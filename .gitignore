@@ -1,3 +1,13 @@
 .venv/
 data.db
 __pycache__/
+*.pyc
+*.bak
+*.bak2
+*.deb
+cloudflared.deb
+.tg_env
+phishsim.log
+tunnel.log
+.flask.pid
+.tunnel.pid
